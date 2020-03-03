@@ -1,7 +1,7 @@
 import atexit
-from Adafruit_MotorHAT import Adafruit_MotorHAT
 import traitlets
 from traitlets.config.configurable import Configurable
+from jetbot.drivetrain import MotorDriver
 
 
 class Motor(Configurable):
@@ -27,12 +27,12 @@ class Motor(Configurable):
         """Sets motor value between [-1, 1]"""
         mapped_value = int(255.0 * (self.alpha * value + self.beta))
         speed = min(max(abs(mapped_value), 0), 255)
-        self._motor.setSpeed(speed)
+        self._motor.set_speed(speed)
         if mapped_value < 0:
-            self._motor.run(Adafruit_MotorHAT.FORWARD)
+            self._motor.run(MotorDriver.FORWARD)
         else:
-            self._motor.run(Adafruit_MotorHAT.BACKWARD)
+            self._motor.run(MotorDriver.BACKWARD)
 
     def _release(self):
         """Stops motor by releasing control"""
-        self._motor.run(Adafruit_MotorHAT.RELEASE)
+        self._motor.run(MotorDriver.RELEASE)
