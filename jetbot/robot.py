@@ -1,8 +1,8 @@
 import time
 import traitlets
 from traitlets.config.configurable import SingletonConfigurable
-from .drivetrain import MotorDriver, Motor
-
+from .drivetrain import MotorDriver
+from . import Motor
 
 class Robot(SingletonConfigurable):
     
