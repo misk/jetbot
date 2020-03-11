@@ -9,7 +9,7 @@ class MotorDriver:
     BRAKE = 3
     RELEASE = 4
 
-    def __init__(self, addr=0x60, freq=1600, i2c=None, i2c_bus=None):
+    def __init__(self, addr=0x50, freq=1600, i2c=None, i2c_bus=None):
         self.motors = [Motor(self, 1), Motor(self, 3)]
         self._i2c = I2C.get_i2c_device(0x20, busnum=i2c_bus)
 
